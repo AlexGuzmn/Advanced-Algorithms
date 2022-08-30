@@ -1,130 +1,96 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include "./src/Utils.h"
+
 using namespace std;
 
-//// Auxiliar function to print vector values - O(n)
-void printVectorValues(vector<int> &vector, string msg) {
-    cout << msg;
-    for (int i = 0; i < vector.size(); i++) {
-        cout << vector[i] << " ";
-    }
-    cout << endl;
-}
-
-// Auxiliar Merge Sort - O(n)
-void merge(int &beg, int &end, vector<int> &unsortedVector) {
-    vector<int> aux;
-    int center = (beg + end) / 2,
-            j = beg,
-            k = center + 1,
-            size = end - beg + 1;
-    for (int i = 0; i < size; i++) {
-        if (j <= center && k <= end) {
-            //
-            if (unsortedVector[j] > unsortedVector[k]) {
-                aux.push_back(unsortedVector[j++]);
-            } else {
-                aux.push_back(unsortedVector[k++]);
+void dynamicCoinChangeProblem(int coins[], int size, int change) {
+    int minCoins[change + 1];
+    int lastCoin[change + 1];
+    minCoins[0] = 0;
+    lastCoin[0] = 0;
+    for (int i = 1; i <= change; i++) {
+        minCoins[i] = 999999;
+        lastCoin[i] = -1;
+        for (int j = 0; j < size; j++) {
+            if (coins[j] <= i) {
+                if (minCoins[i - coins[j]] + 1 < minCoins[i]) {
+                    minCoins[i] = minCoins[i - coins[j]] + 1;
+                    lastCoin[i] = j;
+                }
             }
-        } else if (j <= center) {
-            aux.push_back(unsortedVector[j++]);
-        } else {
-            aux.push_back(unsortedVector[k++]);
         }
     }
-    for (int i = 0; i < size; i++) {
-        unsortedVector[beg + i] = aux[i];
+    int i = change;
+    map<int, int> coinsUsed;
+    while (i > 0) {
+        Utils::insertMap(coinsUsed, coins[lastCoin[i]]);
+        i = i - coins[lastCoin[i]];
     }
+    Utils::printFormattedMap(coinsUsed);
 }
 
-// MergeSort O(n log n)
-void mergeSort(int beg, int end, vector<int> &unsortedVector) {
-    if (beg < end) {
-        int center = (beg + end) / 2;
-        mergeSort(beg, center, unsortedVector);
-        mergeSort(center + 1, end, unsortedVector);
-        merge(beg, end, unsortedVector);
-    }
-}
-
-// Aux insert Map O(n)
-void insertMap(map<int, int> &map, int data){
-    if (map.find(data) == map.end()){
-        map[data] = 1;
-    }else{
-        map[data]++;
-    }
-
-}
-
-// 
-void greedy(vector<int> denom, int change){
-    map<int, int> ans;
+void greedyCoinChangeProblem(int change, vector<int> &coinsDenominations) {
+    map<int, int> coinsUsed;
     int i = 0;
-    while(change !=0 ){
-        if(denom[i] <= change){
-            change -= denom[i];
-            insertMap(ans, denom[i]);
-        }else{
+    while (change != 0) {
+        if (coinsDenominations[i] <= change) {
+            change -= coinsDenominations[i];
+            Utils::insertMap(coinsUsed, coinsDenominations[i]);
+        } else {
             i++;
         }
     }
-    map<int, int>::reverse_iterator itr;
-    for (itr = ans.rbegin(); itr != ans.rend(); itr++){
-        cout << "$" << itr->first << " - " << itr->second << endl;
-    }
+    Utils::printFormattedMap(coinsUsed);
 }
 
-
-int main(){
-    int nDemoninations, price, payment, aux, change;
+int main() {
+    int numOfDenominations;
+    int price;
+    int payment;
+    int auxCin;
+    int change;
     vector<int> denominations;
 
-    cin >> nDemoninations;
-    for (int i = 0; i < nDemoninations; i++){
-        cin >> aux;
-        denominations.push_back(aux);
+    // Reads the total amount of coin denominations
+    cin >> numOfDenominations;
+
+    // Reads each coin denomination
+    for (int i = 0; i < numOfDenominations; i++) {
+        cin >> auxCin;
+        denominations.push_back(auxCin);
     }
-    mergeSort(0, (nDemoninations - 1), denominations);
-    cin >> price;
-    cin >>  payment;
-    printVectorValues(denominations, "Denominations: ");
-    cout << endl;
+
+    // Sorts all coins denominations
+    Utils::mergeSort(0, (numOfDenominations - 1), denominations);
+
+    cin >> price; // Reads price
+    cin >> payment; // Reads payment
+
+    Utils::printVectorValues(denominations, "Denominations: ");
+
     change = payment - price;
-    try{
-        if (change >= 1){
-            cout << "The change is $" << change << endl;
-            cout << "\n--------------------------" << endl;
-            cout << "Dynamic Algoritm Solution\n" << endl;
-            // Call Dynamic Function
-            cout << "--------------------------" << endl;
-            cout << "Greedy Algoritm Solution\n" << endl;
-            greedy(denominations, change);
+
+    try {
+        if (change >= 1) {
+            cout << "The change is $" << change << "\n--------------------------\n" << "Dynamic Algoritm Solution\n"
+                 << endl;
+            dynamicCoinChangeProblem(&denominations[0], denominations.size(), change);
+
+            cout << "--------------------------\nGreedy Algoritm Solution\n" << endl;
+            greedyCoinChangeProblem(change, denominations);
             cout << "--------------------------" << endl;
 
-        }else if(change == 0){
+        } else if (change == 0) {
             cout << "\n The payment is exact, there is no change to give.\n" << endl;
-        }else{
-            throw(change);
+        } else {
+            throw (change);
         }
     }
-    catch(int num){
-        cout << "\n There is not enough money for the payment" << endl;
-        cout << " Change = $" << num << endl;
-        cout << endl;
+    catch (int num) {
+        cout << "\n There is not enough money for the payment" << "\nChange = $" << num << endl;
     }
 
     return 0;
 }
-
-/*
-
-
-
-
-
-
-
-
-*/
