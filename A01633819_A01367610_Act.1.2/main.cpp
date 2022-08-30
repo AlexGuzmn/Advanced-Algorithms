@@ -70,8 +70,8 @@ void greedy(vector<int> denom, int change){
             i++;
         }
     }
-    map<int, int>::iterator itr;
-    for (itr = ans.begin(); itr != ans.end(); itr++){
+    map<int, int>::reverse_iterator itr;
+    for (itr = ans.rbegin(); itr != ans.rend(); itr++){
         cout << "$" << itr->first << " - " << itr->second << endl;
     }
 
@@ -96,9 +96,15 @@ int main(){
     change = payment - price;
     try{
         if (change >= 1){
-            cout << "Algoritmo" << endl;
             cout << "The change is $" << change << endl;
+            cout << "\n--------------------------" << endl;
+            cout << "Dynamic Algoritm Solution\n" << endl;
+            // Call Dynamic Function
+            cout << "--------------------------" << endl;
+            cout << "Greedy Algoritm Solution\n" << endl;
             greedy(denominations, change);
+            cout << "--------------------------" << endl;
+
         }else if(change == 0){
             cout << "\n The payment is exact, there is no change to give.\n" << endl;
         }else{
