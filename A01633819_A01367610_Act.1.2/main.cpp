@@ -58,7 +58,7 @@ void insertMap(map<int, int> &map, int data){
 
 }
 
-
+// 
 void greedy(vector<int> denom, int change){
     map<int, int> ans;
     int i = 0;
@@ -74,8 +74,6 @@ void greedy(vector<int> denom, int change){
     for (itr = ans.rbegin(); itr != ans.rend(); itr++){
         cout << "$" << itr->first << " - " << itr->second << endl;
     }
-
-
 }
 
 

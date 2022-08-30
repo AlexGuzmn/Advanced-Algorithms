@@ -4,11 +4,22 @@
 
 ### Algorithm functionality
 
-...
+This algorithm solves the **Coin Change Problem** using the *dynamic and greedy programming tecniques*. This program needs several inputs: 
+    - First of all, you have to define the number of coin and bills denominations to be considerated.
+    - Then you have to enter the different denominations of coins and bills, the program is going to ask for the number of denominations defined in the first input.
+    - Finally 
+
 
 ### How to use it?
 
-...
+Open your terminal and run the following command 
+```
+g++ main -o outputName
+```
+An executable will be created and you'll be able to run it with an input file by executing (example with the first test input `inputs/test_1.txt`):
+```
+./outputName < inputs/test_1.txt
+```
 
 ### Testing Files
 For testing edge cases, you can find some files at the `inputs/` folder:
