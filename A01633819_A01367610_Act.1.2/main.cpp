@@ -13,7 +13,7 @@ José Pablo Naime García - A01367610
 
 using namespace std;
 
-// Dynamic Programming function O( )
+// Dynamic Programming function O(n*m)
 void dynamicCoinChangeProblem(int coins[], int size, int change) {
     int minCoins[change + 1];
     int lastCoin[change + 1];

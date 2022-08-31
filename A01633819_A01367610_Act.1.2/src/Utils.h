@@ -4,6 +4,8 @@ Activity 1.2 Implementation of the programming techniques "Dynamic programming" 
 Andrés Alejandro Guzmán González - A01633819
 José Pablo Naime García - A01367610
 
+ This class contains all the auxiliar functions to solve and keep organized the coin change problem
+
 */
 
 #ifndef ADVANCED_ALGORITHMS_UTILS_H
@@ -33,6 +35,7 @@ class Utils {
 
 };
 
+// Print values of a Map - O(n)
 void Utils::printFormattedMap(map<int, int> & coinsUsed) {
     map<int, int>::reverse_iterator itr;
     for (itr = coinsUsed.rbegin(); itr != coinsUsed.rend(); itr++) {
@@ -49,7 +52,7 @@ void Utils::printVectorValues(vector<int> &vector, string msg) {
     cout << endl;
 }
 
-// Aux insert Map O(n)
+// Aux insert Map - O(n)
 void Utils::insertMap(map<int, int> &map, int data) {
     if (map.find(data) == map.end()) {
         map[data] = 1;
