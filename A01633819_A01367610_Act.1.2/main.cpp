@@ -34,13 +34,20 @@ void dynamicCoinChangeProblem(int coins[], int size, int change) {
 void greedyCoinChangeProblem(int change, vector<int> &coinsDenominations) {
     map<int, int> coinsUsed;
     int i = 0;
+    try{
     while (change != 0) {
         if (coinsDenominations[i] <= change) {
             change -= coinsDenominations[i];
             Utils::insertMap(coinsUsed, coinsDenominations[i]);
         } else {
+            if (i == coinsDenominations.size() - 1 ) {
+                throw "No se puede dar cambio";
+            }
             i++;
         }
+    }
+    } catch (...){
+        cout << "No se puede dar cambio con las denominaciones dadas" << endl;
     }
     Utils::printFormattedMap(coinsUsed);
 }
