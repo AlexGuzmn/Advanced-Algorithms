@@ -1,6 +1,10 @@
-//
-// Created by Jose Naime on 30/08/22.
-//
+/*
+
+Activity 1.2 Implementation of the programming techniques "Dynamic programming" and "greedy algorithms"
+Andrés Alejandro Guzmán González - A01633819
+José Pablo Naime García - A01367610
+
+*/
 
 #ifndef ADVANCED_ALGORITHMS_UTILS_H
 #define ADVANCED_ALGORITHMS_UTILS_H

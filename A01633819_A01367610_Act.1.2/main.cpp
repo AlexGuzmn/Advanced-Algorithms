@@ -1,3 +1,11 @@
+/*
+
+Activity 1.2 Implementation of the programming techniques "Dynamic programming" and "greedy algorithms"
+Andrés Alejandro Guzmán González - A01633819
+José Pablo Naime García - A01367610
+
+*/
+
 #include <iostream>
 #include <vector>
 #include <map>
@@ -5,6 +13,7 @@
 
 using namespace std;
 
+// Dynamic Programming function O( )
 void dynamicCoinChangeProblem(int coins[], int size, int change) {
     int minCoins[change + 1];
     int lastCoin[change + 1];
@@ -31,6 +40,7 @@ void dynamicCoinChangeProblem(int coins[], int size, int change) {
     Utils::printFormattedMap(coinsUsed);
 }
 
+// Greedy function O(n*m)
 void greedyCoinChangeProblem(int change, vector<int> &coinsDenominations) {
     map<int, int> coinsUsed;
     int i = 0;
@@ -41,13 +51,13 @@ void greedyCoinChangeProblem(int change, vector<int> &coinsDenominations) {
             Utils::insertMap(coinsUsed, coinsDenominations[i]);
         } else {
             if (i == coinsDenominations.size() - 1 ) {
-                throw "No se puede dar cambio";
+                throw "The change can not be given";
             }
             i++;
         }
     }
     } catch (...){
-        cout << "No se puede dar cambio con las denominaciones dadas" << endl;
+        cout << "The change can not be returned with the given denominations." << endl;
     }
     Utils::printFormattedMap(coinsUsed);
 }
