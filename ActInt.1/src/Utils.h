@@ -1,6 +1,10 @@
-//
-// Created by Jose Naime on 09/09/22.
-//
+/*
+ACTIVIDAD INTEGRADORA 1
+
+Andrés Alejandro Guzmán González - A01633819
+José Pablo Naime García - A01367610
+Vanessa M. Cuevas Arroyo - A01634064
+*/
 
 #ifndef UTILS_H
 #define UTILS_H
