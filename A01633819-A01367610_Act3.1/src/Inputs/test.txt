@@ -1,0 +1,12 @@
+7
+exam
+example
+fail
+false
+tree
+true
+trie
+3
+exam
+tries
+traitor
