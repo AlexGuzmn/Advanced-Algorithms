@@ -1,4 +1,4 @@
-7
+9
 exam
 example
 fail
@@ -6,6 +6,8 @@ false
 tree
 true
 trie
+tries
+trident
 3
 exam
 tries
