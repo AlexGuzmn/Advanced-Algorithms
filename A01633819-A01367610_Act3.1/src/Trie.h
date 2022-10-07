@@ -39,14 +39,17 @@ class Trie {
         Node *root;
 };
 
+// Class Constructor O(1)
 Trie::Trie() {
     root = new Node(' ');
 }
 
+// Root Pointer Access O(1)
 Node *Trie::getRoot() {
     return root;
 }
 
+// Trie Insertion O(n) where n is the chars of the srtring
 void Trie::insert(string word) {
     Node *current = root;
     for (int i = 0; i < word.length(); i++) {
@@ -61,6 +64,7 @@ void Trie::insert(string word) {
     current->isWord = true;
 }
 
+//Print Children of Node - O(n) where n are the node children
 void Trie::printChildrenOfNode(Node *node) {
     for (auto it = node->children.begin(); it != node->children.end(); it++) {
         cout << it->first << " ";
@@ -68,6 +72,7 @@ void Trie::printChildrenOfNode(Node *node) {
     cout << endl;
 }
 
+// Search - O(n) where n is the chars of the string we are looking for
 bool Trie::search(string word) {
     cout << word << " - ";
 
@@ -85,6 +90,7 @@ bool Trie::search(string word) {
     return current->isWord;
 }
 
+// DFS - O(n*m) where n are the nodes to review and m are the childrem of every node reviewed
 void Trie::dfs(string word) {
     cout << "  CURRENT | CHILDREN" << endl;
     Node* current = root;

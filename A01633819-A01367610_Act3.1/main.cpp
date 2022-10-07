@@ -18,7 +18,8 @@ int main(){
     cin >> wordsToEnter;
 
     string auxWord;
-
+    
+    // O(n) where n are the words to insert
     for (int i = 0; i < wordsToEnter; i++){
         cin >> auxWord;
         trie.insert(auxWord);
@@ -26,6 +27,7 @@ int main(){
 
     cin >> wordsToSearch;
 
+    // O(n) where n are the words to search
     for (int i = 0; i < wordsToSearch; i++){
         cin >> auxWord;
         cout << trie.search(auxWord) << endl;
