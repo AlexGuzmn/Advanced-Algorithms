@@ -1,27 +1,30 @@
+#include <iostream>
 #include "src/Trie.h"
 
+using namespace std;
 int main(){
     Trie trie = Trie();
 
-    trie.insert("exam");
-    trie.insert("example");
-    trie.insert("fail");
-    trie.insert("false");
-    trie.insert("tree");
-    trie.insert("true");
-    trie.insert("trie");
-    trie.insert("tries");
-    trie.insert("trident");
+    int wordsToEnter = 0;
+    int wordsToSearch = 0;
 
+    cin >> wordsToEnter;
 
-    cout << trie.search("exam") << endl;
-    trie.dfs("exam");
+    string auxWord;
 
-    cout << "\n\n" <<  trie.search("tries") << endl;
-    trie.dfs("tries");
+    for (int i = 0; i < wordsToEnter; i++){
+        cin >> auxWord;
+        trie.insert(auxWord);
+    }
 
-    cout << "\n\n" <<  trie.search("traitor") << endl;
-    trie.dfs("traitor");
+    cin >> wordsToSearch;
+
+    for (int i = 0; i < wordsToSearch; i++){
+        cin >> auxWord;
+        cout << trie.search(auxWord) << endl;
+        trie.dfs(auxWord);
+        cout << "\n";
+    }
 
     return 0;
 }
