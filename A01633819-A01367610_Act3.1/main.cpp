@@ -1,3 +1,10 @@
+/*
+Activity 3.1 - Tries Implementation
+
+Andrés Alejandro Guzmán González - A01633819
+José Pablo Naime García - A01367610
+
+*/
 #include <iostream>
 #include "src/Trie.h"
 
