@@ -1,13 +1,13 @@
 #include <iostream>
 #include <vector>
-#include <limits>
 #include "./src/Utils.h"
+
 using namespace std;
 
 
-int main(){
-    int nodes, aux;
-    vector<vector<int>> adjMatrix;
+int main() {
+    int nodes;
+    vector < vector<int> > adjMatrix;
 
     cin >> nodes;
     Utils::createMtx(adjMatrix, nodes);
