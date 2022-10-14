@@ -57,6 +57,8 @@ void Utils::setInfinity(vector< vector<int> > &mtx, int n) {
   }
 }
 
+//Funtion that founds the minimun distance in between the unvisited nodes
+//minDist - O(n)
 int Utils::minDist( vector<int> &distances, vector<bool> &visitedNodes){
   int min = limit;
   int minIndex = 0;
@@ -70,6 +72,8 @@ int Utils::minDist( vector<int> &distances, vector<bool> &visitedNodes){
   return minIndex;
 }
 
+// Funtion that uses the Dijkstra algorithm to calculate the shortest distance between nodes
+// dijkstraFunction - O(V^2) where V are the number of nodes in the graph
 void Utils::dijkstraFunction(vector< vector<int> > mtx, int nodes, int source) {
 
   vector<int> dist(nodes, limit);
@@ -87,6 +91,8 @@ void Utils::dijkstraFunction(vector< vector<int> > mtx, int nodes, int source) {
     }
   }
 
+  // Sub functon that shows the output 
+  // Complexity - O(n)
   for (int i = 0; i < nodes; i++){
     if (source != i){
       if (dist[i] != limit){
@@ -96,10 +102,6 @@ void Utils::dijkstraFunction(vector< vector<int> > mtx, int nodes, int source) {
       }
     }
   }
-
-
-
-
 }
 
 // Floyd Algorithm Function - O(n^3)
