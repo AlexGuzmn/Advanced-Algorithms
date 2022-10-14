@@ -1,3 +1,11 @@
+/*
+
+Activity 3.2 Implementation of Dijkstra and Floyd algorithms
+
+Andrés Alejandro Guzmán González - A01633819
+José Pablo Naime García - A01367610
+
+*/
 #include <iostream>
 #include <vector>
 #include "./src/Utils.h"
