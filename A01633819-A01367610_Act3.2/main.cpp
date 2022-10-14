@@ -12,7 +12,10 @@ int main() {
     cin >> nodes;
     Utils::createMtx(adjMatrix, nodes);
     Utils::printMtx(adjMatrix);
-    Utils::dijkstraFunction(adjMatrix, nodes);
+    cout << "\n---------- Dijkstra Algorithm ----------\n" << endl;
+    for(int i = 0; i < nodes; i++){
+        Utils::dijkstraFunction(adjMatrix, nodes, i);
+    }
     Utils::floydFunction(adjMatrix, nodes);
 
     return 0;

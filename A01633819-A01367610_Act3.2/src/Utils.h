@@ -14,17 +14,19 @@ This class contains all the auxiliar functions to solve and keep organized the i
 
 #include <iostream>
 #include <vector>
-
 using namespace std;
+
+const int limit = 99999999;
 
 class Utils {
  public:
   static void createMtx(vector< vector<int> > &, int);
   static void printMtx(vector< vector<int> >);
-  static void dijkstraFunction(vector< vector<int> >, int);
+  static void dijkstraFunction(vector< vector<int> >, int, int);
   static void floydFunction(vector< vector<int> >, int);
  private:
   static void setInfinity(vector< vector<int> > &, int);
+  static int minDist(vector<int>&, vector<bool>&);
 };
 
 //Print Matrix - O(n^2)
@@ -32,10 +34,14 @@ void Utils::printMtx(vector< vector<int> > mtx) {
   int n = mtx.size();
   cout << endl;
   for (int i = 0; i < n; i++) {
-	for (int j = 0; j < n; j++) {
-	  cout << mtx[i][j] << " ";
-	}
-	cout << endl;
+    for (int j = 0; j < n; j++) {
+      if (mtx[i][j] == limit){
+        cout << "INF ";
+      }else{
+        cout << mtx[i][j] << " ";
+      }
+    }
+	  cout << endl;
   }
   cout << endl;
 }
@@ -45,36 +51,54 @@ void Utils::setInfinity(vector< vector<int> > &mtx, int n) {
   for (int i = 0; i < n; i++) {
 	for (int j = 0; j < n; j++) {
 	  if (mtx[i][j] == -1) {
-		mtx[i][j] = 99999999;
+		mtx[i][j] = limit;
 	  }
 	}
   }
 }
 
-void Utils::dijkstraFunction(vector< vector<int> > mtx, int n) {
-  cout << "\n---------- Dijkstra Algorithm ----------" << endl;
+int Utils::minDist( vector<int> &distances, vector<bool> &visitedNodes){
+  int min = limit;
+  int minIndex = 0;
 
-  /*
-   * for each node (init node)
-   * 	init aux matrix; it will record the distance from the origin to the current target
-   * 	Iterate through other nodes (target node)
-   * 		create a visit matrix (init in 0)
-   *
-   * 		Get min distance (initNode, targetNode, visitMatrix, auxMatrix)
-   * 			Check if target node is already visited, if so
-   * 				return value stored in auxMatrix
-   *
-   *				Init distance = 0
-   *				init currNode = initNode
-   *
-   *				for the row of currNode in mtx
-   *					get the minimum value (ej. 0 2 -1 3; min value is 2)
-   *					store the node as currNode
-   *
-   *
-   * 	Iterate aux matrix and print the distance in the following format:
-   * 		"node [init node] to node [target node]: [distance]"
-   */
+  for (int i = 0; i < distances.size(); i++){
+    if (visitedNodes[i] == false && distances[i] <= min){
+      min = distances[i];
+      minIndex = i;
+    }
+  }
+  return minIndex;
+}
+
+void Utils::dijkstraFunction(vector< vector<int> > mtx, int nodes, int source) {
+
+  vector<int> dist(nodes, limit);
+  vector<bool> visited(nodes, false);
+
+  dist[source] = 0;
+
+  for(int i = 0; i < nodes-1; i++){
+    int u = minDist(dist, visited);
+    visited[u] = true;
+    for (int v = 0; v < nodes; v++){
+      if(!visited[v] && mtx[u][v] && dist[u] != limit && dist[u] + mtx[u][v] < dist[v] && mtx[u][v] != -1){
+        dist[v] = dist[u] + mtx[u][v];
+      }
+    }
+  }
+
+  for (int i = 0; i < nodes; i++){
+    if (source != i){
+      if (dist[i] != limit){
+        cout << "Node " << source + 1 <<  " to node " << i+1 << ": " << dist[i] << endl;
+      }else{
+        cout << "Node " << source + 1 <<  " to node " << i+1 << ": " << "No path found (No connection)" << endl;
+      }
+    }
+  }
+
+
+
 
 }
 
@@ -92,7 +116,6 @@ void Utils::floydFunction(vector< vector<int> > mtx, int n) {
 	}
   }
   printMtx(mtx);
-
 }
 
 // Create Matrix - O(n^2)
