@@ -1,13 +1,18 @@
+/*
+
+Activity 3.3 Implementation of the Knapsack Problem
+
+Andrés Alejandro Guzmán González - A01633819
+José Pablo Naime García - A01367610
+
+*/
+
 #include <iostream>
 #include <vector>
 #include "src/Utils.h"
 
 using namespace std;
 
-/*
-  items:
-  [Value, Weight]
- */
 
 int main(){
   vector< vector<int> > items;
@@ -17,10 +22,6 @@ int main(){
 
   Utils::processInput(items, n, maxCapacity);
   Utils::knapsackAlgorithm(items, n, maxCapacity);
-
-
-
-
 
   return 0;
 }
