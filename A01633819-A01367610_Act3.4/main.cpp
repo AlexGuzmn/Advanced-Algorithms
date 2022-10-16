@@ -16,7 +16,7 @@ using namespace std;
 int main(){
 
     int nodes;
-    vector<vector<int>> graph;
+    vector< vector<int> > graph;
 
     cin >> nodes;
     Utils::createMtx(graph, nodes);
