@@ -1,5 +1,16 @@
-#ifndef UTILS_H
-#define UTILS_H
+/*
+
+Activity 3.4 Implementation of Graph coloring
+
+Andrés Alejandro Guzmán González - A01633819
+José Pablo Naime García - A01367610
+
+This class contains all the auxiliar functions to solve and keep organized the implementation
+
+*/
+
+#ifndef GRAPH_COLORING_UTILS_H
+#define GRAPH_COLORING_UTILS_H
 
 #include <iostream>
 #include <vector>
@@ -39,12 +50,14 @@ void Utils::createMtx(vector< vector<int> > &mtx, int n) {
   }
 }
 
+// printResult O(n)
 void Utils::printResult(vector<int> vec){
     for(int i  = 0; i < vec.size(); i++){
         cout << "Node: " << i << ", Assigned Color: " << vec[i] << endl;
     }
 }
 
+// graphColoring O(V^2 + E)
 void Utils::graphColoring(vector<vector<int>> & mtx, int n){
     vector<int> colors(n, 0);
     for (int i = 0;  i < n; i++){
@@ -63,4 +76,4 @@ void Utils::graphColoring(vector<vector<int>> & mtx, int n){
 
 
 
-#endif //UTILS_H
+#endif //GRAPH_COLORING_UTILS_H
