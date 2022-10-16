@@ -66,10 +66,6 @@ void Utils::graphColoring(vector<vector<int>> & mtx, int n){
                 colors[j] += 1;
             }
         }
-        for (int k = 0; k < n ; k++){
-            cout << colors[k] << " ";
-        }
-        cout << endl;
     }
     printResult(colors);
 }
