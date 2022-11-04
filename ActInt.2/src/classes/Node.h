@@ -8,15 +8,22 @@
 class Node{
  public:
   Node(int id);
+  int getId();
   void addEdge(Node*, int);
   void printEdges();
+  Node* getNodeInsideEdges(int);
  private:
-  unsigned int id;
+  int id = -1;
+  bool visited = false;
   vector<Edge*> edges;
 };
 
 Node::Node(int id){
   this->id = id;
+}
+
+int Node::getId() {
+  return id;
 }
 
 void Node::addEdge(Node *toNode, int weight){
@@ -35,6 +42,15 @@ void Node::printEdges(){
   for (int i = 0; i < edges.size(); i++){
 	cout << "  > Edge " << i << " to node " << edges[i]->toNode->id << " with weight " << edges[i]->weight << endl;
   }
+}
+
+Node* Node::getNodeInsideEdges(int id) {
+  for (int i = 0; i < edges.size(); i++){
+	if (edges[i]->toNode->id == id) {
+	  return edges[i]->toNode;
+	}
+  }
+  return nullptr;
 }
 
 #endif //ADVANCED_ALGORITHMS_ACTINT_2_SRC_NODE_H_

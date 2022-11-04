@@ -2,17 +2,17 @@
 
 using namespace std;
 
-#include "src/classes/Node.h"
 #include "src/Utils.h"
 
-int main(){
+int main() {
   int n;
   cin >> n;
 
-  int** distanceMtx = Utils::getMatrixFromInput(&n);
+  Utils::getInstance()->setMatrixSize(&n);
+  int **distanceMtx = Utils::getInstance()->getMatrixFromInput();
+  map<int, Node *> distancesMap = Utils::getInstance()->getMapFromMatrix(distanceMtx);
 
-  Utils::printMatrix(distanceMtx, &n);
-
+  Utils::printNodesMap(&distancesMap);
 
   return 0;
 }
