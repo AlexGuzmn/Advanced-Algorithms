@@ -27,6 +27,11 @@ g++ -std=c++11 main.cpp -o exec -I include -L lib -l SDL2-2.0.0
 Generara un archivo ejecutable llamado ```exec```.
 
 ### Ejecución
+#### Video Ejemplo:
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ereAnY1khyY/0.jpg)](https://www.youtube.com/watch?v=ereAnY1khyY)
+
+
 Para ejecutar el programa se debe ejecutar el siguiente comando en la terminal:
 ```bash
 ./exec < [archivo de entrada]
