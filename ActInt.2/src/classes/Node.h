@@ -14,6 +14,8 @@ class Node {
   void printEdges();
   Node *getNodeInsideEdges(int);
   vector<Edge *> getEdges();
+  bool isVisited();
+  void setVisited(bool);
  private:
   int id = -1;
   bool visited = false;
@@ -26,6 +28,14 @@ Node::Node(int id) {
 
 int Node::getId() {
   return id;
+}
+
+bool Node::isVisited() {
+  return visited;
+}
+
+void Node::setVisited(bool visited) {
+  this->visited = visited;
 }
 
 void Node::addEdge(Node *toNode, int weight) {

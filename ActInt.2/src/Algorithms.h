@@ -11,10 +11,10 @@
 class Algorithms{
  public:
   // Used for exercise 1 - Find the optimal way to connect all the cities
-  static vector<Edge*> kruskal(map<int, Node *> *nodesMap);
+  static void kruskal(map<int, Node *> *nodesMap, vector<Edge*> *minimumSpanningTreeVector);
 };
 
-vector<Edge*> Algorithms::kruskal(map<int, Node*> *nodesMap) {
+void Algorithms::kruskal(map<int, Node*> *nodesMap, vector<Edge*> *minimumSpanningTreeVector) {
   vector<Edge*> edges;
 
   for (auto it = nodesMap->begin(); it != nodesMap->end(); it++) {
@@ -25,15 +25,32 @@ vector<Edge*> Algorithms::kruskal(map<int, Node*> *nodesMap) {
 	}
   }
 
+  // sort edges by weight
+  sort(edges.begin(), edges.end(), [](Edge *a, Edge *b) {
+	return a->getWeight() < b->getWeight();
+  });
+
   // print all edges
-  cout << "All edges:" << endl;
+  /*cout << "All edges:" << endl;
   for (int i = 0; i < edges.size(); i++) {
 	cout << "Edge " << i << " from node " << edges[i]->getOrigin()->getId() << " to node " << edges[i]->getToNode()
-	->getId() << " with weight " << edges[i]->getWeight() << endl;
+		->getId() << " with weight " << edges[i]->getWeight() << endl;
+  }*/
+
+  // find the minimum spanning tree
+  for (int i = 0; i < edges.size(); i++) {
+	Edge *edge = edges[i];
+	Node *origin = edge->getOrigin();
+	Node *toNode = edge->getToNode();
+
+	if (origin->isVisited() && toNode->isVisited()) {
+	  continue;
+	} else {
+	  minimumSpanningTreeVector->push_back(edge);
+	  origin->setVisited(true);
+	  toNode->setVisited(true);
+	}
   }
-
-  return edges;
-
 }
 
 #endif //ADVANCED_ALGORITHMS_ACTINT_2_SRC_ALGORITHMS_H_
