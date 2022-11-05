@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <algorithm>
+
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
