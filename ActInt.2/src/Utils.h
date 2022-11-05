@@ -1,8 +1,7 @@
 #ifndef ADVANCED_ALGORITHMS_ACTINT_2_SRC_UTILS_H_
 #define ADVANCED_ALGORITHMS_ACTINT_2_SRC_UTILS_H_
 
-#include <iostream>
-#include <map>
+
 #include "./classes/Node.h"
 
 using namespace std;

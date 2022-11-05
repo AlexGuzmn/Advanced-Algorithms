@@ -5,20 +5,22 @@
 #include <vector>
 #include "Edge.h"
 
-class Node{
+class Node {
  public:
   Node(int id);
   int getId();
-  void addEdge(Node*, int);
+
+  void addEdge(Node *, int);
   void printEdges();
-  Node* getNodeInsideEdges(int);
+  Node *getNodeInsideEdges(int);
+  vector<Edge *> getEdges();
  private:
   int id = -1;
   bool visited = false;
-  vector<Edge*> edges;
+  vector<Edge *> edges;
 };
 
-Node::Node(int id){
+Node::Node(int id) {
   this->id = id;
 }
 
@@ -26,9 +28,9 @@ int Node::getId() {
   return id;
 }
 
-void Node::addEdge(Node *toNode, int weight){
+void Node::addEdge(Node *toNode, int weight) {
   // We can't allow to add an edge to itself
-  if (toNode->id == this->id){
+  if (toNode->id == this->id) {
 	cout << "Error: Can't add an edge to itself" << endl;
 	return;
   }
@@ -37,20 +39,25 @@ void Node::addEdge(Node *toNode, int weight){
   edges.push_back(edge);
 }
 
-void Node::printEdges(){
+void Node::printEdges() {
   cout << "- Node " << this->id << " has " << edges.size() << " edges" << endl;
-  for (int i = 0; i < edges.size(); i++){
-	cout << "  > Edge " << i << " to node " << edges[i]->toNode->id << " with weight " << edges[i]->weight << endl;
+  for (int i = 0; i < edges.size(); i++) {
+	cout << "  > Edge " << i << " to node " << edges[i]->getToNode()->getId() << " with weight " <<
+		 edges[i]->getWeight() << endl;
   }
 }
 
-Node* Node::getNodeInsideEdges(int id) {
-  for (int i = 0; i < edges.size(); i++){
-	if (edges[i]->toNode->id == id) {
-	  return edges[i]->toNode;
+Node *Node::getNodeInsideEdges(int id) {
+  for (int i = 0; i < edges.size(); i++) {
+	if (edges[i]->getToNode()->getId() == id) {
+	  return edges[i]->getToNode();
 	}
   }
   return nullptr;
+}
+
+vector<Edge *> Node::getEdges() {
+  return edges;
 }
 
 #endif //ADVANCED_ALGORITHMS_ACTINT_2_SRC_NODE_H_
