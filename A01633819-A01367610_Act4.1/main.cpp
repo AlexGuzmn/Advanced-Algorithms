@@ -6,7 +6,6 @@
 #include <queue>
 #include <algorithm>
 
-
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 #define SIMULATION_DELAY 1
