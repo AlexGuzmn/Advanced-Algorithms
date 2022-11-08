@@ -9,6 +9,4 @@ include_directories(SDL2Test ${SDL2_INCLUDE_DIRS})
 
 find_package(CGAL)
 
-add_executable(exec main.cpp)
-
 target_link_libraries(exec CGAL::CGAL ${SDL2_LIBRARIES})
