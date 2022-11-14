@@ -1,3 +1,13 @@
+/*
+
+Activity 4.3 Implementation of the Randomized Binary Search
+Andrés Alejandro Guzmán González - A01633819
+José Pablo Naime García - A01367610
+
+This class contains all the auxiliar functions to solve and keep organized the implementation
+
+*/
+
 #ifndef UTILIS_ACT_4_3
 #define UTILIS_ACT_4_3
 
@@ -11,6 +21,8 @@ class Utils{
         static void lasVegasBinarySearch(vector<int> &, int);
 };
 
+// makeDataVec Complexity O(n)
+// Function to separate the input array bay commas
 void Utils::makeDataVec (vector<int> &vec, string val){
     stringstream sstr(val);
     while(sstr.good()){
@@ -20,6 +32,8 @@ void Utils::makeDataVec (vector<int> &vec, string val){
     }
 }
 
+// printVec Complexity O(n)
+// Function to show the values of a vector
 void Utils::printVec(vector<int> vec){
     for(int i = 0; i < vec.size(); i++){
         cout << vec[i] << " ";
@@ -27,16 +41,20 @@ void Utils::printVec(vector<int> vec){
     cout << endl;
 }
 
+// createRandPiv Complexity O(1)
+// Function tu create a random number in between 2 numbers
 int Utils::createRandPiv(int beg, int end){
     srand(time(NULL));
     return (beg + rand() % (end - beg+1));
 }
 
-
+// BinarySearch Complexity O(log(n))
+// Recursive implementation of the Binary Search
 int Utils::BinarySearch(vector<int> vec, int num, int beg, int end){
     if (beg <= end){
-        int piv = createRandPiv(beg, end);
-        if (vec[piv] == num){
+        int piv = createRandPiv(beg, end); // The search pivot is created
+
+        if (vec[piv] == num){ // If the searched value is found returns the index
             return piv;
         }
         else if (vec[piv] > num){
@@ -46,24 +64,11 @@ int Utils::BinarySearch(vector<int> vec, int num, int beg, int end){
             return BinarySearch(vec, num, piv+1, end);
         }
     }
-    return -1;
-
-    // while (beg <= end){
-    //     int piv = createRandPiv(beg, end);
-
-    //     if (vec[piv] == num){
-    //         return piv;
-    //     }
-    //     else if (vec[piv] > num){
-    //         end = piv - 1;
-    //     }
-    //     else{
-    //         beg = piv + 1;
-    //     }
-    // }
-    // return -1;
+    return -1; // If not found returns -1
 }
 
+// lasVegasBinarySearch Complexity O(1) - 
+// Auxiliar fucntion for the search process it prints the results.
 void Utils::lasVegasBinarySearch(vector<int> &vec, int num){
     int ans = BinarySearch(vec, num, 0, vec.size()-1);
     if (ans > 0){

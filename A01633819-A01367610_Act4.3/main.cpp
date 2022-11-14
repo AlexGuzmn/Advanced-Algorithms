@@ -1,3 +1,11 @@
+/*
+
+Activity 4.3 Implementation of the Randomized Binary Search
+Andrés Alejandro Guzmán González - A01633819
+José Pablo Naime García - A01367610
+
+*/
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -18,7 +26,7 @@ int main(){
    
     Utils::makeDataVec(data, values);
     
-    sort(data.begin(), data.end());
+    sort(data.begin(), data.end()); //we make sure the values are sorted
     cout << endl;
     Utils::printVec(data);
     Utils::lasVegasBinarySearch(data, n);
